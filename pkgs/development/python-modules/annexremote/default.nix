@@ -1,7 +1,7 @@
 { lib
 , isPy3k
 , buildPythonPackage
-, fetchFromGitHub
+, fetchPypi
 , future
 , mock
 , nose
@@ -9,15 +9,11 @@
 
 buildPythonPackage rec {
   pname = "annexremote";
-  version = "1.3.1";
+  version = "1.4.5";
 
-  # use fetchFromGitHub instead of fetchPypi because the test suite of
-  # the package is not included into the PyPI tarball
-  src = fetchFromGitHub {
-    rev = "v${version}";
-    owner = "Lykos153";
-    repo = "AnnexRemote";
-    sha256 = "13ny7h41430pi9393dw3qgwxvzcxacapjsw0d3vjm7lc4h566alq";
+  src = fetchPypi {
+    inherit pname version;
+    sha256 = "1s22m4shira97h34ixz80753wskb8p3l56x1c7r7p1m78hhl3bpc";
   };
 
   propagatedBuildInputs = [ future ];
